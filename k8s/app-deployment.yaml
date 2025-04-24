@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: url-shortener-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: url-shortener-app
+  template:
+    metadata:
+      labels:
+        app: url-shortener-app
+    spec:
+      containers:
+      - name: app
+        image: mrigendrasingh434/url-shortener-app:latest
+        ports:
+        - containerPort: 8000
+        env:
+        - name: DATABASE_URL
+          value: postgresql://postgres:1234@postgres:5432/url_shortener
